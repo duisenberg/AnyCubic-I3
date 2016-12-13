@@ -28,10 +28,15 @@ My settings in Configuration.h are:
    #define PROBE_SERVO_DEACTIVATION_DELAY 0
 ---
 
+If compiling the firmware with Autolevel enabled results in a "time.h not found" error, the Time library from
+Paul Stoffregen installed in the normal libraries folder, in qr_solve.cpp time.h changed to Time.h solves this
+issue. (Fork of this library available at https://github.com/duisenberg/Time)
+
 I wired the probe a little different as shown in the instructable. The probe triggers a tiny Reed Relais that
 is connected parallel to the mechanical Z enstop. So in case the probe fails,  the mechanical endstop still is
-in place to prevent the nozzle from crashing into the bed. Also, Z Safe Homing can be disabled. It is adjusted 
-to trigger a tiny bit lower than the inductive probe.
+in place to prevent the nozzle from crashing into the bed.  It is adjusted to trigger a tiny bit lower than the
+inductive probe. This way the Z_SAFE_HOMING feature can stay disabled which is a bit more comfortable when using
+homing from a USB controller.
 
 There is one caveat with the Marlin 1.0 Firmware provided with the printer. If AutoLevel is enabled, the printer
 looses its XY Home settings when the G29 command is done. Though, it needs to be homed before running the G29
