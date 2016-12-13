@@ -1,3 +1,19 @@
 The source firmware is a Marlin 1.0 version from late 2014. It usually comes with the printer on SD card and
-is provided here as is because from user reports it in some cases didnt make it onto the card.
+is provided here as is because from user reports it in some cases didnt make it onto the card. 
+
+Included are the hardware librarys for Arduino to support the Arduino Mega hardware and need be added to the 
+Arduino hardware folder.
+
+The firmware is not identical with the one that comres preinstalled on the printer board, it is an early version
+and does not support the "Resume from power outage" feature. Though, it already comes with Bed AutoLevel support.
+
+The Anycubic Prusa I3 - as I received it - with the Trigorilla Ramps 1.4 Controller board (Mainboard 33) was 
+meant to control the second Z motor from the E1 connector. For the source firmware it either has to be plugged
+to the secondary Z connector or in Configuration_adv.h the Z_DUAL_STEPPER_DRIVERS has to be defined.
+
+For me the firmware worked out of the box but I would not recommend to upload it to the printer unless the 
+procedure how to reupload the manufacturers firmware - provided as .hex-file on SD card - is familiar. For 
+an unmodified printer this firmware does not provide any benefit compared to the preinstalled version.
+
+All Software provided here is derived from some GPL 3.0 licensed code, so if not mentioned otherwise its GPL 3.0. 
 
