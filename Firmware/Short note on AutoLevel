@@ -1,0 +1,42 @@
+With aluminium hotbed and an inductive probe it is possible to add Autolevel capabilities to the printer. 
+
+The inductive Probe - LJ12A3-Z/BX as sold by Anycubic (BY should do as well) in reality on aluminium has
+a detection range of like 2mm. So even if it is possible to run it with a glass covered hotbed using some
+aluminium foil applied to the probing spots, this limits leveling to 3 or 4 spots at the cost of some build
+space. For a tape covered aluminium build plate this probe works well, should also do with Buildtak or similiar.
+
+A sample probe holder that mounts to lefthand position on the X carriage is provided in STL directory. The 
+straight version is a bit tight with the X endstop connector, the angled version works well with that, but the
+holders screw notch still is in the wrong side for that. Well.
+
+http://www.instructables.com/id/Enable-Auto-Leveling-for-your-3D-Printer-Marlin-Fi/ provides a nice guide how
+to install and wire the probe and configure the Autolevel-feature in Firmware.
+
+My settings in Configuration.h are:
+#define ENABLE_AUTO_BED_LEVELING 
+  // these are the positions on the bed to do the probing
+  #define LEFT_PROBE_BED_POSITION 15
+  #define RIGHT_PROBE_BED_POSITION 170
+  #define BACK_PROBE_BED_POSITION 170
+  #define FRONT_PROBE_BED_POSITION 20
+
+  // these are the offsets to the prob relative to the extruder tip (Hotend - Probe)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -29
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER -1.2
+  
+   #define PROBE_SERVO_DEACTIVATION_DELAY 0
+---
+
+I wired the probe a little different as shown in the instructable. The probe triggers a tiny Reed Relais that
+is connected parallel to the mechanical Z enstop. So in case the probe fails,  the mechanical endstop still is
+in place to prevent the nozzle from crashing into the bed. Also, Z Safe Homing can be disabled. It is adjusted 
+to trigger a tiny bit lower than the inductive probe.
+
+There is one caveat with the Marlin 1.0 Firmware provided with the printer. If AutoLevel is enabled, the printer
+looses its XY Home settings when the G29 command is done. Though, it needs to be homed before running the G29
+procedure. Thus, the start gcode needs to run G28 X Y twice - once before the G29, once afterwards.
+
+
+
+
