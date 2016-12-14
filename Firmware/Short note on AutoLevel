@@ -35,13 +35,28 @@ issue. (Fork of this library available at https://github.com/duisenberg/Time)
 I wired the probe a little different as shown in the instructable. The probe triggers a tiny Reed Relais that
 is connected parallel to the mechanical Z enstop. So in case the probe fails,  the mechanical endstop still is
 in place to prevent the nozzle from crashing into the bed.  It is adjusted to trigger a tiny bit lower than the
-inductive probe. This way the Z_SAFE_HOMING feature can stay disabled which is a bit more comfortable when using
-homing from a USB controller.
+inductive probe. 
 
-There is one caveat with the Marlin 1.0 Firmware provided with the printer. If AutoLevel is enabled, the printer
-looses its XY Home settings when the G29 command is done. Though, it needs to be homed before running the G29
-procedure. Thus, the start gcode needs to run G28 X Y twice - once before the G29, once afterwards.
+Anyway, there is a big caveat with the Marlin 1.0 Firmware provided with the printer: AutoLevel simply does not
+work. After G29 XY positioning runs to a random offset per move, resulting in funny spirals instead of a circle. 
+After G28XY positioning works expected, but ... Autolevel grid is gone.
 
+The only real cure here is to get Marlin 1.0.2 or a later stable release, edit the configs to match with the 
+Anycubic config and then Autolevel works a bit more as expected.
+
+I would not recommend to use the Anycubic Inductive probe ... maybe other inductives will fail as well. First issue
+with them is they are not temperature compensated what means up to 0.5mm difference in detection range depending on
+the temperature of the hotbed. If the hotbed happens to be on while probing, this again affects the detection range.
+No surprise with inductive probe. 
+
+A capacitive probe might work better, also is said to work with glass bed. But for the available devices the form 
+factor - 18mm diameter and more - is quite odd, a mechanical switch with servo isnt much worse.
+
+From handling the 1.0.2 Marlin is not really ideal too. Babystepping in a print would help to adjust the temperature
+offset that has to be compensated, but the value isnt shown on display (Reprap smart discount) and so turning the 
+thumbwheel is a bit of a blind flight. 
+
+So all in all - the AutoLevel feature did not meet expectaions yet. Maybe Marlin 1.1.0 will work better.
 
 
 
