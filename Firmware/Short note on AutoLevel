@@ -41,8 +41,8 @@ test print with 0.2 worked quite as expected.
 
 If there is a choice, I would not recommend using an inductive probe at all. The safe detection range for aluminium is 
 very low, and the Hotbed on/off changes the inductivity of the bed resulting in varying detection ranges. Also it varies
-with environment temperature. Though, capacitive probes are a bit fat and servo with mechanical switch also makes a bulky 
-accessoire. 
+slightly with environment temperatureand it needs to be very level with the bed. Though, capacitive probes are a bit fat
+and servo with mechanical switch also makes a bulky accessoire. 
 
 
 
