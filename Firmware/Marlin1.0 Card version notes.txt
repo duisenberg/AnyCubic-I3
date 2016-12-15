@@ -4,7 +4,7 @@ is provided here as is because from user reports it in some cases didnt make it 
 Included are the hardware librarys for Arduino to support the Arduino Mega hardware and need be added to the 
 Arduino hardware folder.
 
-The firmware is not identical with the one that comres preinstalled on the printer board, it is an early version
+The firmware is not identical with the one that comes preinstalled on the printer board, it is an early version
 and does not support the "Resume from power outage" feature. Though, it already comes with Bed AutoLevel support.
 
 The Anycubic Prusa I3 - as I received it - with the Trigorilla Ramps 1.4 Controller board (Mainboard 33) was 
