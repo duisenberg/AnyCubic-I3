@@ -12,26 +12,6 @@ holders screw notch still is in the wrong side for that. Well.
 http://www.instructables.com/id/Enable-Auto-Leveling-for-your-3D-Printer-Marlin-Fi/ provides a nice guide how
 to install and wire the probe and configure the Autolevel-feature in Firmware.
 
-My settings in Configuration.h are:
-#define ENABLE_AUTO_BED_LEVELING 
-  // these are the positions on the bed to do the probing
-  #define LEFT_PROBE_BED_POSITION 15
-  #define RIGHT_PROBE_BED_POSITION 170
-  #define BACK_PROBE_BED_POSITION 170
-  #define FRONT_PROBE_BED_POSITION 20
-
-  // these are the offsets to the prob relative to the extruder tip (Hotend - Probe)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -29
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
-  #define Z_PROBE_OFFSET_FROM_EXTRUDER -1.2
-  
-   #define PROBE_SERVO_DEACTIVATION_DELAY 0
----
-
-If compiling the firmware with Autolevel enabled results in a "time.h not found" error, the Time library from
-Paul Stoffregen installed in the normal libraries folder, in qr_solve.cpp time.h changed to Time.h solves this
-issue. (Fork of this library available at https://github.com/duisenberg/Time)
-
 I wired the probe a little different as shown in the instructable. The probe triggers a tiny Reed Relais that
 is connected parallel to the mechanical Z enstop. So in case the probe fails,  the mechanical endstop still is
 in place to prevent the nozzle from crashing into the bed.  It is adjusted to trigger a tiny bit lower than the
@@ -39,24 +19,42 @@ inductive probe.
 
 Anyway, there is a big caveat with the Marlin 1.0 Firmware provided with the printer: AutoLevel simply does not
 work. After G29 XY positioning runs to a random offset per move, resulting in funny spirals instead of a circle. 
-After G28XY positioning works expected, but ... Autolevel grid is gone.
+After another G28XY positioning works expected, but ... Autolevel grid is gone. 
 
-The only real cure here is to get Marlin 1.0.2 or a later stable release, edit the configs to match with the 
-Anycubic config and then Autolevel works a bit more as expected.
+Marlin 1.1.0 RC8 introduced a lot updates regarding autolevel and lot else stuff. It is a bit uneasy to set up
+because some configuration settings have changed in order, name and comments. Sample config files from my setup are
+provided as templates in the firmware section, be sure to double check with the old Anycubic template. 
+If there are constexpr compile errors, change constexpr to const in Marlin_main.cpp.
 
-I would not recommend to use the Anycubic Inductive probe ... maybe other inductives will fail as well. First issue
-with them is they are not temperature compensated what means up to 0.5mm difference in detection range depending on
-the temperature of the hotbed. If the hotbed happens to be on while probing, this again affects the detection range.
-No surprise with inductive probe. 
+Be sure to check settings, orientations etc. very careful after uploading the new release to the printer by using the
+Arduino serial console. With SAFE_Z_HOMING enabled, the 1.1.0RC8 seems to run well with the Anycubic. 
 
-A capacitive probe might work better, also is said to work with glass bed. But for the available devices the form 
-factor - 18mm diameter and more - is quite odd, a mechanical switch with servo isnt much worse.
+To set up the probe, the first task is to adjust it in height to enable a safe 0 pos detection. Next ist the Z probe offset, 
+its invert is added to the point the bed is detected, so if the probe fires and the nozzle is 0.6 over bedlevel the offset 
+is -0.6. Reupload the firmware with new setting then. The bed should be as in level as possible, once the offset for the bed
+middle is set properly, the corners can be adjusted - easy with the paper probe - manually with the level screws. This worked 
+for me quite well with serial console and manual g commands. 
 
-From handling the 1.0.2 Marlin is not really ideal too. Babystepping in a print would help to adjust the temperature
-offset that has to be compensated, but the value isnt shown on display (Reprap smart discount) and so turning the 
-thumbwheel is a bit of a blind flight. 
+Now G29 can be run and should get the points with only a little offset. Z_PROBE_END_SCRIPT should contain something like
+"G1 Z10 F200\nG0 X30 Y30 F6000" to run the printhead into a safe position after G29. This in main is it, for me the first
+test print with 0.2 worked quite as expected. 
 
-So all in all - the AutoLevel feature did not meet expectaions yet. Maybe Marlin 1.1.0 will work better.
+If there is a choice, I would not recommend using an inductive probe at all. The safe detection range for aluminium is 
+very low, and the Hotbed on/off changes the inductivity of the bed resulting in varying detection ranges. Also it varies
+with environment temperature. Though, capacitive probes are a bit fat and servo with mechanical switch also makes a bulky 
+accessoire. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
