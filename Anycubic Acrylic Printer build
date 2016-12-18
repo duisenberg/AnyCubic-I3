@@ -1,0 +1,37 @@
+<h3>Anycubic Acrylic Printer build</h3>
+
+The Anycubic Prusa I3 is one of the many in market Prusa I3 clones having an Acrylic frame.
+It is available for a more or less reasonable price from 300-350 Euro, mostly at Amazon and as
+FBA, so no worries about taxes and having the Amazon retail conditions. Other similiar clones
+like Geetech or Anet are available for 230 Euro or even less, but in general not as FBA. 
+
+Anycubic does not run any support pages, the customer service is available by email or phone in
+english. The provided service is quite good once the contact is established, resending defect or
+wrong shipped parts is no problem, it only takes a couple of days. 
+
+The printer kit contains the printer, a 1kg PLA filament spool, a SD-card with some files for the 
+printer, some tools that are needed to build the printer from kit and a printed build instruction
+manual.
+
+Assembling the printer does not differ much from other printers of the same kind, the build runs 
+straight like shown in the manual. The setup itself is kept quite short, though with manual and 
+the completed printer it is possible to start printing the first - simple - things.
+
+The printers firmware as shipped is a 1.0 Marlin with an added "Recover from outage" function for
+SD card prints. It may or may not be useful in some cases. To activate it for a specific print a G5 
+command has to be added to startup gcode. Should not be overused to prevent eeprom wearoff.
+
+The printers mechanic components are quite ok, the end switches are a bit on the quality edge, but 
+all in all - depending a bit on the build - the printer works quite well, at least for printing PLA
+and TPU.
+
+At faster speeds - 40mm/s up - the printer tends to vibrate and resonate, so additional accessoires
+like dampers and stabilisators might be necessary for running it at higher speeds. The printed parts -
+part cooling fan nozzle, X axis carrier - are not that durable, the STLs for these parts can be 
+requested from the Anycubic service. Since the copyright for them is not clear, they cannot be published
+here.
+
+
+
+
+
