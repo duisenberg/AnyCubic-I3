@@ -1,4 +1,5 @@
 <h3>Sample config files for Marlin 1.1.0 RC8 on the ANYCUBIC Prusa I3</h3>
+_TriGorilla-Controller board_
 
 Features enabled in this config:
 
