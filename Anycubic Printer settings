@@ -1,14 +1,14 @@
-The Control menu allows to tune some printer settings. For the Anycubic Prusa I3 most 
-settings match common operation quite well. Modifying settings here should be done with
-care, the Control menu allows to store and retrieve settings as well as revert to factory
-settings. Stored settings will load on printer start. 
+The Control menu allows to tune some printer settings. For the Anycubic Prusa I3 most settings 
+match common operation quite well. Modifying settings here should be done with care, the Control
+menu allows to store and retrieve settings as well as revert to factory settings. Stored settings
+will load on printer start. 
 
-The Motion menu has two settings that might need attention. The first is the XY Acceleration.
-It is set to 3000mm/s^2 by factory. Decreasing it to 1500 or even less can help to reduce the
-wavy surface / perimeter artifacts that easily happen on the perimeter.
+The Motion menu has two settings that might need attention. The first is the XY Acceleration. It is 
+set to 3000mm/s^2 by factory. Decreasing it to 1500 or even less can help to reduce the wavy 
+surface / perimeter artifacts that easily happen on the perimeter.
 
-The Max XY acceleration should be reduced to 3000mm/s^2 also, since some print programs tend to
-read this value to calculate the feedrate.
+The Max XY acceleration should be reduced to 3000mm/s^2 also, since some print programs tend to read
+this value to calculate the feedrate.
 
 Another value to tune is the XY jerk. Weird name, this parameter means the number of speed change
 that is done in a "jump", without using acceleration. It is set to 10 by factory. Increasing it to
@@ -26,9 +26,11 @@ with 20-60mm/s, for TPU 10-30mm/s is a common window. Print speed also depends o
 size, type, heater, printed structure, retraction needs and enviromental conditions. This is a complex 
 set of parameters, so there is no easy answer to the "best setting" question. 
 
-For my Ancyubic I3 build it works quite well to print most models with 40-50 mm/s, solid infill, bridges,
+For my Ancyubic I3 build it works quite well to print most models with 40-50 mm/s, 60mm/s infill, bridges,
 outside perimeter and first layer with 20mm/s when using PLA. For some models it is better to increase 
-speeds a little, in rare cases it needs to be decrased. 
+speeds a little, in rare cases it needs to be decrased. Mattercontrol provides a nice "in flight" speed 
+adjustment in its Control window that allows to tune the allover speed depending on the model, as large
+models benefit from higher print speeds. Dont forget to increase nozzle temp as well. 
 
 The layer view in most slices shows the print speed as colors, so it is a good way to preview if the speed
 conditions for the model match. Even if print speeds below 20mm/s all in all do work, printing below 10mm/s
